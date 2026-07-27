@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ข้อสอบฝึกทีฟา ป.1 - 27 ก.ค. 2026</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: 'Comic Sans MS', 'Tahoma', sans-serif;
+    margin: 0; padding: 0;
+    background: linear-gradient(160deg, #fff3e0 0%, #ffe0f0 100%);
+    color: #333;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 16px; }
+  header {
+    text-align: center; background: #ff8fab; color: #fff;
+    border-radius: 24px; padding: 20px 16px; margin-bottom: 16px;
+    box-shadow: 0 6px 0 #f06292;
+  }
+  header h1 { margin: 0 0 6px; font-size: 30px; }
+  header .meta { font-size: 18px; opacity: .95; }
+  .subject-title {
+    font-size: 24px; font-weight: bold; color: #fff;
+    background: #7c4dff; border-radius: 18px;
+    padding: 12px 18px; margin: 22px 0 12px;
+    box-shadow: 0 4px 0 #5e35b1; text-align: center;
+  }
+  .subject-title.s2 { background: #26a69a; box-shadow: 0 4px 0 #00897b; }
+  .q {
+    background: #fff; border-radius: 20px; padding: 18px;
+    margin-bottom: 16px; box-shadow: 0 4px 10px rgba(0,0,0,.08);
+  }
+  .q .num {
+    display: inline-block; background: #ffca28; color: #5d4037;
+    font-weight: bold; border-radius: 50%; width: 38px; height: 38px;
+    line-height: 38px; text-align: center; font-size: 20px; margin-right: 8px;
+  }
+  .q .text { font-size: 24px; font-weight: bold; margin: 6px 0 14px; }
+  .opt {
+    display: block; width: 100%; text-align: left;
+    font-size: 23px; font-family: inherit;
+    background: #f5f5f5; border: 3px solid #e0e0e0;
+    border-radius: 16px; padding: 14px 18px; margin-bottom: 10px;
+    cursor: pointer; transition: .12s;
+  }
+  .opt:active { transform: scale(.98); }
+  .opt.sel { background: #bbdefb; border-color: #2196f3; }
+  .opt.correct { background: #c8e6c9; border-color: #43a047; }
+  .opt.wrong { background: #ffcdd2; border-color: #e53935; }
+  .explain {
+    display: none; font-size: 19px; background: #fff8e1;
+    border-left: 6px solid #ffb300; border-radius: 10px;
+    padding: 10px 14px; margin-top: 10px; color: #6d4c00;
+  }
+  .explain.show { display: block; }
+  .btnbar { text-align: center; margin: 24px 0; }
+  button.big {
+    font-family: inherit; font-size: 24px; font-weight: bold;
+    color: #fff; border: none; border-radius: 20px;
+    padding: 16px 28px; margin: 8px; cursor: pointer;
+  }
+  #checkBtn { background: #43a047; box-shadow: 0 5px 0 #2e7d32; }
+  #resetBtn { background: #78909c; box-shadow: 0 5px 0 #546e7a; }
+  button.big:active { transform: translateY(3px); box-shadow: none; }
+  #scorebox {
+    display: none; text-align: center; font-size: 28px; font-weight: bold;
+    background: #fff; border-radius: 24px; padding: 24px;
+    margin: 18px 0; box-shadow: 0 6px 14px rgba(0,0,0,.12);
+  }
+  #scorebox.show { display: block; }
+  #scorebox .big-score { font-size: 46px; color: #ff6f00; }
+  #scorebox .praise { font-size: 24px; margin-top: 10px; }
+  footer { text-align: center; color: #999; font-size: 14px; padding: 20px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🌟 ข้อสอบฝึกของหนูทีฟา 🌟</h1>
+    <div class="meta">ชั้น ป.1 &nbsp;•&nbsp; วันที่ 27 ก.ค. 2026</div>
+    <div class="meta">วิชา: ภาษาไทย 📖 + สังคมศึกษา 🏡</div>
+  </header>
+
+  <div id="quiz"></div>
+
+  <div class="btnbar">
+    <button class="big" id="checkBtn" onclick="checkAll()">✅ ตรวจคำตอบ</button>
+    <button class="big" id="resetBtn" onclick="resetAll()">🔄 ทำใหม่</button>
+  </div>
+
+  <div id="scorebox"></div>
+
+  <footer>JND • ฝึกทำทุกวัน เก่งขึ้นทุกวัน 💪</footer>
+</div>
+
+<script>
+const questions = [
+  // ===== ภาษาไทย: พยัญชนะ ก–ฮ (10 ข้อ) =====
+  { subj:1, text:"พยัญชนะไทยตัวแรกสุดคือตัวใด?", opts:["ก","ค","ง"], ans:0, exp:"พยัญชนะไทยเริ่มที่ ก ไก่ 🐔" },
+  { subj:1, text:"คำว่า “ไก่” 🐔 ขึ้นต้นด้วยพยัญชนะตัวใด?", opts:["ก","ข","จ"], ans:0, exp:"ก ไก่" },
+  { subj:1, text:"คำว่า “ไข่” 🥚 ขึ้นต้นด้วยพยัญชนะตัวใด?", opts:["ก","ข","ค"], ans:1, exp:"ข ไข่" },
+  { subj:1, text:"คำว่า “งู” 🐍 ขึ้นต้นด้วยพยัญชนะตัวใด?", opts:["ง","จ","ช"], ans:0, exp:"ง งู" },
+  { subj:1, text:"คำว่า “จาน” 🍽️ ขึ้นต้นด้วยพยัญชนะตัวใด?", opts:["ช","จ","ซ"], ans:1, exp:"จ จาน" },
+  { subj:1, text:"คำว่า “ปลา” 🐟 ขึ้นต้นด้วยพยัญชนะตัวใด?", opts:["ผ","พ","ป"], ans:2, exp:"ป ปลา" },
+  { subj:1, text:"คำว่า “ม้า” 🐴 ขึ้นต้นด้วยพยัญชนะตัวใด?", opts:["ม","น","บ"], ans:0, exp:"ม ม้า" },
+  { subj:1, text:"คำว่า “หมา” 🐶 ขึ้นต้นด้วยพยัญชนะตัวใด?", opts:["อ","ห","ฮ"], ans:1, exp:"ห + ม = หมา" },
+  { subj:1, text:"เรียงพยัญชนะ ก แล้วตัวถัดไปคือตัวใด?", opts:["ค","ข","ง"], ans:1, exp:"ก ข ค ค ฆ… ตัวถัดจาก ก คือ ข" },
+  { subj:1, text:"พยัญชนะไทยตัวสุดท้ายคือตัวใด?", opts:["อ","ห","ฮ"], ans:2, exp:"ฮ นกฮูก 🦉 เป็นตัวสุดท้าย" },
+
+  // ===== สังคมศึกษา: ตนเองและครอบครัว (10 ข้อ) =====
+  { subj:2, text:"คนที่ให้กำเนิดและเลี้ยงดูเรา คือใคร?", opts:["พ่อแม่","เพื่อน","ครู"], ans:0, exp:"พ่อแม่ให้กำเนิดและเลี้ยงดูเรา ❤️" },
+  { subj:2, text:"พี่กับน้องท้องเดียวกัน เราเรียกว่าอะไร?", opts:["เพื่อนบ้าน","พี่น้อง","ครู"], ans:1, exp:"พี่น้องคือคนในครอบครัวเดียวกัน" },
+  { subj:2, text:"พ่อของแม่ เราเรียกว่าอะไร?", opts:["ตา","ลุง","อา"], ans:0, exp:"พ่อของแม่ = ตา, แม่ของแม่ = ยาย" },
+  { subj:2, text:"แม่ของพ่อ เราเรียกว่าอะไร?", opts:["ป้า","ย่า","น้า"], ans:1, exp:"แม่ของพ่อ = ย่า, พ่อของพ่อ = ปู่" },
+  { subj:2, text:"เราควรทำอย่างไรกับพ่อแม่?", opts:["เชื่อฟังและรัก","เถียงเสมอ","ไม่สนใจ"], ans:0, exp:"ลูกที่ดีเชื่อฟังและรักพ่อแม่ 🥰" },
+  { subj:2, text:"เมื่อผู้ใหญ่ให้ของ เราควรพูดว่าอะไร?", opts:["ขอบคุณค่ะ/ครับ","เฉยๆ","ไม่พูด"], ans:0, exp:"รับของแล้วพูดขอบคุณ เป็นมารยาทที่ดี" },
+  { subj:2, text:"สมาชิกในครอบครัวควรทำอย่างไรต่อกัน?", opts:["ทะเลาะกัน","รักและช่วยเหลือกัน","แกล้งกัน"], ans:1, exp:"ครอบครัวที่ดีรักและช่วยเหลือกัน" },
+  { subj:2, text:"อวัยวะส่วนใดของร่างกายที่เราใช้มองเห็น? 👀", opts:["ตา","หู","จมูก"], ans:0, exp:"เราใช้ตามองเห็น 👀" },
+  { subj:2, text:"เราควรดูแลร่างกายของเราให้เป็นอย่างไร?", opts:["สกปรก","สะอาด","เลอะเทอะ"], ans:1, exp:"ดูแลร่างกายให้สะอาด อาบน้ำ แปรงฟัน 🪥" },
+  { subj:2, text:"เมื่ออยู่ที่โรงเรียน ใครคือคนที่สอนหนังสือเรา?", opts:["หมอ","ตำรวจ","ครู"], ans:2, exp:"ครูคือผู้สอนหนังสือที่โรงเรียน 👩‍🏫" }
+];
+
+const subjNames = { 1:"📖 วิชาภาษาไทย — พยัญชนะ ก–ฮ", 2:"🏡 วิชาสังคมศึกษา — ตนเองและครอบครัว" };
+const selected = {};
+let checked = false;
+
+function render() {
+  const box = document.getElementById('quiz');
+  box.innerHTML = '';
+  let lastSubj = null;
+  questions.forEach((q, i) => {
+    if (q.subj !== lastSubj) {
+      const t = document.createElement('div');
+      t.className = 'subject-title' + (q.subj===2 ? ' s2' : '');
+      t.textContent = subjNames[q.subj];
+      box.appendChild(t);
+      lastSubj = q.subj;
+    }
+    const card = document.createElement('div');
+    card.className = 'q';
+    const numInSubj = questions.slice(0,i+1).filter(x=>x.subj===q.subj).length;
+    let html = '<div class="text"><span class="num">'+numInSubj+'</span>'+q.text+'</div>';
+    q.opts.forEach((o, oi) => {
+      html += '<button class="opt" data-q="'+i+'" data-o="'+oi+'" onclick="pick('+i+','+oi+')">'+o+'</button>';
+    });
+    html += '<div class="explain" id="exp-'+i+'">💡 เฉลย: '+q.opts[q.ans]+' — '+q.exp+'</div>';
+    card.innerHTML = html;
+    box.appendChild(card);
+  });
+}
+
+function pick(qi, oi) {
+  if (checked) return;
+  selected[qi] = oi;
+  document.querySelectorAll('.opt[data-q="'+qi+'"]').forEach(b => b.classList.remove('sel'));
+  document.querySelector('.opt[data-q="'+qi+'"][data-o="'+oi+'"]').classList.add('sel');
+}
+
+function checkAll() {
+  checked = true;
+  let score = 0;
+  questions.forEach((q, i) => {
+    const sel = selected[i];
+    document.querySelectorAll('.opt[data-q="'+i+'"]').forEach(b => {
+      const oi = +b.dataset.o;
+      b.classList.remove('sel');
+      if (oi === q.ans) b.classList.add('correct');
+      if (oi === sel && sel !== q.ans) b.classList.add('wrong');
+    });
+    document.getElementById('exp-'+i).classList.add('show');
+    if (sel === q.ans) score++;
+  });
+  showScore(score);
+}
+
+function showScore(score) {
+  const total = questions.length;
+  const pct = score/total;
+  let praise, emoji;
+  if (pct === 1) { praise = "สุดยอดมากลูก! เต็มทุกข้อเลย!"; emoji="🏆🎉"; }
+  else if (pct >= 0.8) { praise = "เก่งมากๆ เลยลูก! ใกล้เต็มแล้ว!"; emoji="🌟😍"; }
+  else if (pct >= 0.6) { praise = "ดีมากลูก! เก่งขึ้นเยอะเลย!"; emoji="😊👍"; }
+  else { praise = "เก่งมากที่ตั้งใจทำ! พรุ่งนี้ลองใหม่ได้อีกนะ!"; emoji="🤗💪"; }
+  const sb = document.getElementById('scorebox');
+  sb.innerHTML = '<div>ได้คะแนน</div><div class="big-score">'+score+' / '+total+' '+emoji+'</div><div class="praise">'+praise+'</div>';
+  sb.classList.add('show');
+  sb.scrollIntoView({behavior:'smooth'});
+}
+
+function resetAll() {
+  checked = false;
+  for (const k in selected) delete selected[k];
+  document.getElementById('scorebox').classList.remove('show');
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+render();
+</script>
+</body>
+</html>

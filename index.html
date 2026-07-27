@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ข้อสอบฝึกประจำวัน — JND</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Tahoma', sans-serif; margin: 0; min-height: 100vh;
+    background: linear-gradient(160deg, #fff3e0 0%, #e3f2fd 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px; color: #333;
+  }
+  h1 { font-size: 30px; margin: 0 0 6px; text-align: center; }
+  .sub { font-size: 17px; color: #666; margin-bottom: 32px; text-align: center; }
+  .cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+  a.card {
+    display: block; width: 240px; text-decoration: none; color: #fff;
+    border-radius: 26px; padding: 30px 22px; text-align: center;
+    box-shadow: 0 8px 0 rgba(0,0,0,.15); transition: .12s;
+  }
+  a.card:active { transform: translateY(4px); box-shadow: 0 4px 0 rgba(0,0,0,.15); }
+  a.tifa { background: #ff8fab; }
+  a.yuna { background: #5c6bc0; }
+  a.card .emoji { font-size: 60px; display: block; margin-bottom: 10px; }
+  a.card .name { font-size: 30px; font-weight: bold; }
+  a.card .grade { font-size: 18px; opacity: .95; margin-top: 4px; }
+  footer { margin-top: 36px; color: #999; font-size: 14px; text-align: center; }
+</style>
+</head>
+<body>
+  <h1>📚 ข้อสอบฝึกประจำวัน</h1>
+  <div class="sub">เลือกชื่อของหนู แล้วเริ่มทำได้เลย!</div>
+  <div class="cards">
+    <a class="card tifa" href="./tifa/">
+      <span class="emoji">🌟</span>
+      <span class="name">ทีฟา</span>
+      <div class="grade">ชั้น ป.1</div>
+    </a>
+    <a class="card yuna" href="./yuna/">
+      <span class="emoji">✨</span>
+      <span class="name">ยูน่า</span>
+      <div class="grade">ชั้น ป.4</div>
+    </a>
+  </div>
+  <footer>JND • ฝึกทำทุกวัน เก่งขึ้นทุกวัน 💪</footer>
+</body>
+</html>

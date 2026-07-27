@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ข้อสอบฝึกยูน่า ป.4 - 27 ก.ค. 2026</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: 'Tahoma', 'Sarabun', sans-serif;
+    margin: 0; padding: 0;
+    background: linear-gradient(160deg, #e3f2fd 0%, #e8f5e9 100%);
+    color: #263238;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 16px; }
+  header {
+    text-align: center; background: #5c6bc0; color: #fff;
+    border-radius: 20px; padding: 22px 16px; margin-bottom: 16px;
+    box-shadow: 0 5px 0 #3f51b5;
+  }
+  header h1 { margin: 0 0 6px; font-size: 26px; }
+  header .meta { font-size: 16px; opacity: .95; }
+  .subject-title {
+    font-size: 20px; font-weight: bold; color: #fff;
+    background: #7e57c2; border-radius: 14px;
+    padding: 11px 18px; margin: 22px 0 12px;
+    box-shadow: 0 4px 0 #5e35b1;
+  }
+  .subject-title.s2 { background: #00897b; box-shadow: 0 4px 0 #00695c; }
+  .q {
+    background: #fff; border-radius: 16px; padding: 16px 18px;
+    margin-bottom: 14px; box-shadow: 0 3px 8px rgba(0,0,0,.07);
+  }
+  .q .num {
+    display: inline-block; background: #ffb74d; color: #4e342e;
+    font-weight: bold; border-radius: 50%; width: 30px; height: 30px;
+    line-height: 30px; text-align: center; font-size: 16px; margin-right: 8px;
+  }
+  .q .text { font-size: 19px; font-weight: bold; margin: 4px 0 12px; }
+  .opt {
+    display: block; width: 100%; text-align: left;
+    font-size: 18px; font-family: inherit;
+    background: #f5f5f5; border: 2px solid #e0e0e0;
+    border-radius: 12px; padding: 11px 16px; margin-bottom: 8px;
+    cursor: pointer; transition: .12s;
+  }
+  .opt:active { transform: scale(.99); }
+  .opt.sel { background: #bbdefb; border-color: #2196f3; }
+  .opt.correct { background: #c8e6c9; border-color: #43a047; }
+  .opt.wrong { background: #ffcdd2; border-color: #e53935; }
+  .explain {
+    display: none; font-size: 16px; background: #fff8e1;
+    border-left: 5px solid #ffb300; border-radius: 8px;
+    padding: 9px 13px; margin-top: 9px; color: #6d4c00;
+  }
+  .explain.show { display: block; }
+  .btnbar { text-align: center; margin: 24px 0; }
+  button.big {
+    font-family: inherit; font-size: 20px; font-weight: bold;
+    color: #fff; border: none; border-radius: 16px;
+    padding: 14px 26px; margin: 8px; cursor: pointer;
+  }
+  #checkBtn { background: #43a047; box-shadow: 0 5px 0 #2e7d32; }
+  #resetBtn { background: #78909c; box-shadow: 0 5px 0 #546e7a; }
+  button.big:active { transform: translateY(3px); box-shadow: none; }
+  #scorebox {
+    display: none; text-align: center; font-size: 22px; font-weight: bold;
+    background: #fff; border-radius: 20px; padding: 22px;
+    margin: 18px 0; box-shadow: 0 5px 12px rgba(0,0,0,.12);
+  }
+  #scorebox.show { display: block; }
+  #scorebox .big-score { font-size: 40px; color: #f57c00; }
+  #scorebox .praise { font-size: 20px; margin-top: 8px; }
+  footer { text-align: center; color: #999; font-size: 13px; padding: 20px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>✨ ข้อสอบฝึกของยูน่า ✨</h1>
+    <div class="meta">ชั้น ป.4 &nbsp;•&nbsp; วันที่ 27 ก.ค. 2026</div>
+    <div class="meta">วิชา: ภาษาไทย 📖 + สังคมศึกษา 🗺️</div>
+  </header>
+
+  <div id="quiz"></div>
+
+  <div class="btnbar">
+    <button class="big" id="checkBtn" onclick="checkAll()">✅ ตรวจคำตอบ</button>
+    <button class="big" id="resetBtn" onclick="resetAll()">🔄 ทำใหม่</button>
+  </div>
+
+  <div id="scorebox"></div>
+
+  <footer>JND • ฝึกทำทุกวัน เก่งขึ้นทุกวัน 💪</footer>
+</div>
+
+<script>
+const questions = [
+  // ===== ภาษาไทย: ชนิดของคำ (นาม/สรรพนาม/กริยา) 15 ข้อ =====
+  { subj:1, text:"“คำนาม” คือคำที่ใช้เรียกสิ่งใด?", opts:["ชื่อคน สัตว์ สิ่งของ สถานที่","อาการหรือการกระทำ","คำที่ใช้แทนคำนาม","คำที่ใช้ขยายความ"], ans:0, exp:"คำนามใช้เรียกชื่อคน สัตว์ สิ่งของ และสถานที่" },
+  { subj:1, text:"คำว่า “แมว” เป็นคำชนิดใด?", opts:["คำกริยา","คำนาม","คำสรรพนาม","คำวิเศษณ์"], ans:1, exp:"แมวเป็นชื่อสัตว์ จึงเป็นคำนาม" },
+  { subj:1, text:"คำว่า “วิ่ง” เป็นคำชนิดใด?", opts:["คำนาม","คำสรรพนาม","คำกริยา","คำบุพบท"], ans:2, exp:"วิ่งเป็นอาการ/การกระทำ จึงเป็นคำกริยา" },
+  { subj:1, text:"คำว่า “ฉัน” เป็นคำชนิดใด?", opts:["คำสรรพนาม","คำนาม","คำกริยา","คำวิเศษณ์"], ans:0, exp:"ฉันใช้แทนตัวผู้พูด จึงเป็นคำสรรพนาม" },
+  { subj:1, text:"คำชนิดใดใช้แสดง “อาการหรือการกระทำ”?", opts:["คำนาม","คำกริยา","คำสรรพนาม","คำบุพบท"], ans:1, exp:"คำกริยาแสดงอาการหรือการกระทำ เช่น กิน เดิน วิ่ง" },
+  { subj:1, text:"“คำสรรพนาม” ทำหน้าที่อย่างไร?", opts:["เรียกชื่อสิ่งของ","แสดงการกระทำ","ใช้แทนคำนาม","บอกจำนวน"], ans:2, exp:"คำสรรพนามใช้แทนคำนาม เช่น เขา เธอ มัน" },
+  { subj:1, text:"คำว่า “โรงเรียน” เป็นคำชนิดใด?", opts:["คำนาม","คำกริยา","คำสรรพนาม","คำวิเศษณ์"], ans:0, exp:"โรงเรียนเป็นชื่อสถานที่ จึงเป็นคำนาม" },
+  { subj:1, text:"คำว่า “เขา” (หมายถึงบุคคล) เป็นคำชนิดใด?", opts:["คำนาม","คำกริยา","คำสรรพนาม","คำบุพบท"], ans:2, exp:"เขาใช้แทนบุคคลที่กล่าวถึง จึงเป็นคำสรรพนาม" },
+  { subj:1, text:"ประโยค “นกบินอยู่บนฟ้า” คำว่า “บิน” เป็นคำชนิดใด?", opts:["คำนาม","คำสรรพนาม","คำกริยา","คำวิเศษณ์"], ans:2, exp:"บินเป็นการกระทำของนก จึงเป็นคำกริยา" },
+  { subj:1, text:"ประโยค “น้องอ่านหนังสือ” คำใดเป็น “คำกริยา”?", opts:["น้อง","อ่าน","หนังสือ","อยู่"], ans:1, exp:"อ่านคือการกระทำ จึงเป็นคำกริยา (น้องและหนังสือเป็นคำนาม)" },
+  { subj:1, text:"คำว่า “ท่าน” เป็นคำสรรพนามที่ใช้กับใคร?", opts:["สัตว์เลี้ยง","สิ่งของ","ผู้ใหญ่ที่เคารพ","เด็กเล็ก"], ans:2, exp:"ท่านเป็นสรรพนามที่ใช้กับผู้ใหญ่หรือผู้ที่เราเคารพ" },
+  { subj:1, text:"คำใดต่อไปนี้เป็น “คำนาม”?", opts:["วิ่ง","สวย","ปากกา","เร็ว"], ans:2, exp:"ปากกาเป็นชื่อสิ่งของ จึงเป็นคำนาม" },
+  { subj:1, text:"คำใดต่อไปนี้เป็น “คำกริยา”?", opts:["บ้าน","นอน","สูง","ดินสอ"], ans:1, exp:"นอนเป็นการกระทำ จึงเป็นคำกริยา" },
+  { subj:1, text:"คำใดต่อไปนี้เป็น “คำสรรพนาม”?", opts:["หมา","เธอ","เดิน","ขาว"], ans:1, exp:"เธอใช้แทนคน จึงเป็นคำสรรพนาม" },
+  { subj:1, text:"ประโยค “คุณครูสอนหนังสือ” มีคำนามกี่คำ?", opts:["1 คำ","2 คำ","3 คำ","ไม่มีเลย"], ans:1, exp:"คำนาม 2 คำ คือ คุณครู และ หนังสือ (สอน = คำกริยา)" },
+
+  // ===== สังคมศึกษา: ภูมิศาสตร์ท้องถิ่น/แผนที่ 15 ข้อ =====
+  { subj:2, text:"ดวงอาทิตย์ขึ้นทางทิศใด?", opts:["ทิศเหนือ","ทิศใต้","ทิศตะวันออก","ทิศตะวันตก"], ans:2, exp:"ดวงอาทิตย์ขึ้นทางทิศตะวันออกและตกทางทิศตะวันตก" },
+  { subj:2, text:"ทิศที่อยู่ตรงข้ามกับทิศเหนือคือทิศใด?", opts:["ทิศใต้","ทิศตะวันออก","ทิศตะวันตก","ทิศเหนือ"], ans:0, exp:"ทิศใต้อยู่ตรงข้ามกับทิศเหนือ" },
+  { subj:2, text:"ทิศหลักมีทั้งหมดกี่ทิศ?", opts:["2 ทิศ","4 ทิศ","6 ทิศ","8 ทิศ"], ans:1, exp:"ทิศหลักมี 4 ทิศ คือ เหนือ ใต้ ตะวันออก ตะวันตก" },
+  { subj:2, text:"แผนที่มีประโยชน์อย่างไร?", opts:["ใช้บอกเวลา","ใช้บอกตำแหน่งและเส้นทาง","ใช้ชั่งน้ำหนัก","ใช้วัดอุณหภูมิ"], ans:1, exp:"แผนที่ใช้บอกตำแหน่งสถานที่และเส้นทางต่างๆ" },
+  { subj:2, text:"เมืองหลวงของประเทศไทยคือจังหวัดใด?", opts:["เชียงใหม่","ขอนแก่น","กรุงเทพมหานคร","ภูเก็ต"], ans:2, exp:"กรุงเทพมหานครเป็นเมืองหลวงของไทย" },
+  { subj:2, text:"สิ่งที่ใช้อธิบายความหมายของสัญลักษณ์ต่างๆ ในแผนที่ เรียกว่าอะไร?", opts:["มาตราส่วน","คำอธิบายสัญลักษณ์","เส้นรุ้ง","ทิศ"], ans:1, exp:"คำอธิบายสัญลักษณ์ (legend) บอกความหมายของสัญลักษณ์ในแผนที่" },
+  { subj:2, text:"ประเทศไทยตั้งอยู่ในทวีปใด?", opts:["ยุโรป","แอฟริกา","เอเชีย","อเมริกา"], ans:2, exp:"ประเทศไทยอยู่ในทวีปเอเชีย (ภูมิภาคเอเชียตะวันออกเฉียงใต้)" },
+  { subj:2, text:"หน่วยการปกครองที่เล็กกว่า “จังหวัด” คือหน่วยใด?", opts:["ภาค","อำเภอ","ประเทศ","ทวีป"], ans:1, exp:"จังหวัดแบ่งเป็นอำเภอ อำเภอแบ่งเป็นตำบล" },
+  { subj:2, text:"ผู้ที่เป็นหัวหน้าในการปกครองระดับจังหวัดคือใคร?", opts:["นายอำเภอ","ผู้ว่าราชการจังหวัด","กำนัน","ผู้ใหญ่บ้าน"], ans:1, exp:"ผู้ว่าราชการจังหวัดเป็นหัวหน้าปกครองระดับจังหวัด" },
+  { subj:2, text:"แม่น้ำสายสำคัญที่ไหลผ่านกรุงเทพมหานครคือแม่น้ำใด?", opts:["แม่น้ำโขง","แม่น้ำเจ้าพระยา","แม่น้ำปิง","แม่น้ำมูล"], ans:1, exp:"แม่น้ำเจ้าพระยาไหลผ่านกรุงเทพมหานคร" },
+  { subj:2, text:"กรุงเทพมหานครตั้งอยู่ในภาคใดของประเทศไทย?", opts:["ภาคเหนือ","ภาคกลาง","ภาคใต้","ภาคตะวันออกเฉียงเหนือ"], ans:1, exp:"กรุงเทพมหานครอยู่ในภาคกลาง" },
+  { subj:2, text:"ทิศที่อยู่ระหว่างทิศเหนือกับทิศตะวันออก เรียกว่าทิศใด?", opts:["ตะวันออกเฉียงเหนือ","ตะวันตกเฉียงใต้","ตะวันออกเฉียงใต้","ตะวันตกเฉียงเหนือ"], ans:0, exp:"ระหว่างเหนือกับตะวันออก คือทิศตะวันออกเฉียงเหนือ" },
+  { subj:2, text:"ในแผนที่ทั่วไป สีฟ้าหรือสีน้ำเงินมักใช้แทนสิ่งใด?", opts:["ภูเขา","ป่าไม้","แหล่งน้ำ ทะเล แม่น้ำ","ถนน"], ans:2, exp:"สีฟ้า/น้ำเงินในแผนที่มักแทนแหล่งน้ำ เช่น ทะเล แม่น้ำ" },
+  { subj:2, text:"เครื่องมือที่จำลองรูปทรงของโลกเป็นทรงกลม เรียกว่าอะไร?", opts:["แผนที่","ลูกโลก","เข็มทิศ","ไม้บรรทัด"], ans:1, exp:"ลูกโลกจำลองโลกเป็นทรงกลม" },
+  { subj:2, text:"เครื่องมือที่ใช้บอกทิศทางได้ คือเครื่องมือใด?", opts:["เข็มทิศ","นาฬิกา","เทอร์โมมิเตอร์","เครื่องคิดเลข"], ans:0, exp:"เข็มทิศใช้บอกทิศทาง เข็มจะชี้ไปทางทิศเหนือ" }
+];
+
+const subjNames = { 1:"📖 วิชาภาษาไทย — ชนิดของคำ (นาม / สรรพนาม / กริยา)", 2:"🗺️ วิชาสังคมศึกษา — ภูมิศาสตร์ท้องถิ่นและแผนที่" };
+const selected = {};
+let checked = false;
+
+function render() {
+  const box = document.getElementById('quiz');
+  box.innerHTML = '';
+  let lastSubj = null;
+  questions.forEach((q, i) => {
+    if (q.subj !== lastSubj) {
+      const t = document.createElement('div');
+      t.className = 'subject-title' + (q.subj===2 ? ' s2' : '');
+      t.textContent = subjNames[q.subj];
+      box.appendChild(t);
+      lastSubj = q.subj;
+    }
+    const card = document.createElement('div');
+    card.className = 'q';
+    const numInSubj = questions.slice(0,i+1).filter(x=>x.subj===q.subj).length;
+    let html = '<div class="text"><span class="num">'+numInSubj+'</span>'+q.text+'</div>';
+    q.opts.forEach((o, oi) => {
+      html += '<button class="opt" data-q="'+i+'" data-o="'+oi+'" onclick="pick('+i+','+oi+')">'+o+'</button>';
+    });
+    html += '<div class="explain" id="exp-'+i+'">💡 เฉลย: '+q.opts[q.ans]+' — '+q.exp+'</div>';
+    card.innerHTML = html;
+    box.appendChild(card);
+  });
+}
+
+function pick(qi, oi) {
+  if (checked) return;
+  selected[qi] = oi;
+  document.querySelectorAll('.opt[data-q="'+qi+'"]').forEach(b => b.classList.remove('sel'));
+  document.querySelector('.opt[data-q="'+qi+'"][data-o="'+oi+'"]').classList.add('sel');
+}
+
+function checkAll() {
+  checked = true;
+  let score = 0;
+  questions.forEach((q, i) => {
+    const sel = selected[i];
+    document.querySelectorAll('.opt[data-q="'+i+'"]').forEach(b => {
+      const oi = +b.dataset.o;
+      b.classList.remove('sel');
+      if (oi === q.ans) b.classList.add('correct');
+      if (oi === sel && sel !== q.ans) b.classList.add('wrong');
+    });
+    document.getElementById('exp-'+i).classList.add('show');
+    if (sel === q.ans) score++;
+  });
+  showScore(score);
+}
+
+function showScore(score) {
+  const total = questions.length;
+  const pct = score/total;
+  let praise, emoji;
+  if (pct === 1) { praise = "สุดยอดมากลูก! ทำได้เต็มทุกข้อ!"; emoji="🏆🎉"; }
+  else if (pct >= 0.8) { praise = "เก่งมากยูน่า! เกือบเต็มแล้ว!"; emoji="🌟😍"; }
+  else if (pct >= 0.6) { praise = "ทำได้ดีมากลูก! พัฒนาขึ้นเรื่อยๆ!"; emoji="😊👍"; }
+  else { praise = "เยี่ยมที่ตั้งใจทำจนจบ! ลองทบทวนเฉลยแล้วสู้ต่อนะ!"; emoji="🤗💪"; }
+  const sb = document.getElementById('scorebox');
+  sb.innerHTML = '<div>ได้คะแนน</div><div class="big-score">'+score+' / '+total+' '+emoji+'</div><div class="praise">'+praise+'</div>';
+  sb.classList.add('show');
+  sb.scrollIntoView({behavior:'smooth'});
+}
+
+function resetAll() {
+  checked = false;
+  for (const k in selected) delete selected[k];
+  document.getElementById('scorebox').classList.remove('show');
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+render();
+</script>
+</body>
+</html>
