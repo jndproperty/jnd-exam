@@ -3,179 +3,304 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ข้อสอบฝึกทีฟา ป.1 - 29 ก.ค. 2026</title>
+<title>ข้อสอบฝึกทีฟา ป.1 - 4 ต.ค. 2026 (100 ข้อ)</title>
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  body {
-    font-family: 'Comic Sans MS', 'Tahoma', sans-serif;
-    margin: 0; padding: 0;
-    background: linear-gradient(160deg, #fff3e0 0%, #ffe0f0 100%);
-    color: #333;
-  }
-  .wrap { max-width: 680px; margin: 0 auto; padding: 16px; }
-  header {
-    text-align: center; background: #ff8fab; color: #fff;
-    border-radius: 24px; padding: 20px 16px; margin-bottom: 16px;
-    box-shadow: 0 6px 0 #f06292;
-  }
-  header h1 { margin: 0 0 6px; font-size: 30px; }
-  header .meta { font-size: 18px; opacity: .95; }
-  .subject-title {
-    font-size: 24px; font-weight: bold; color: #fff;
-    background: #7c4dff; border-radius: 18px;
-    padding: 12px 18px; margin: 22px 0 12px;
-    box-shadow: 0 4px 0 #5e35b1; text-align: center;
-  }
-  .subject-title.s2 { background: #26a69a; box-shadow: 0 4px 0 #00897b; }
-  .q {
-    background: #fff; border-radius: 20px; padding: 18px;
-    margin-bottom: 16px; box-shadow: 0 4px 10px rgba(0,0,0,.08);
-  }
-  .q .num {
-    display: inline-block; background: #ffca28; color: #5d4037;
-    font-weight: bold; border-radius: 50%; width: 38px; height: 38px;
-    line-height: 38px; text-align: center; font-size: 20px; margin-right: 8px;
-  }
-  .q .text { font-size: 24px; font-weight: bold; margin: 6px 0 14px; }
-  .opt {
-    display: block; width: 100%; text-align: left;
-    font-size: 23px; font-family: inherit;
-    background: #f5f5f5; border: 3px solid #e0e0e0;
-    border-radius: 16px; padding: 14px 18px; margin-bottom: 10px;
-    cursor: pointer; transition: .12s;
-  }
+  body { font-family: 'Comic Sans MS', 'Tahoma', sans-serif; margin:0; padding:0; background: linear-gradient(160deg, #fff3e0 0%, #ffe0f0 100%); color:#333; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 14px; }
+  header { text-align:center; background: #ff8fab; color:#fff; border-radius:24px; padding:18px 14px; margin-bottom:14px; box-shadow: 0 6px 0 #f06292; }
+  header h1 { margin:0 0 6px; font-size: 28px; }
+  header .meta { font-size: 17px; opacity:.95; }
+  .tabs { display:grid; grid-template-columns: repeat(5, 1fr); gap:6px; margin-bottom:14px; }
+  .tab { font-family:inherit; font-size: 15px; font-weight:bold; border:none; border-radius:14px;
+         padding:10px 4px; cursor:pointer; background:#fff; color:#555; box-shadow:0 3px 0 #ddd; line-height:1.3; }
+  .tab .tn { display:block; font-size: 12px; font-weight:normal; opacity:.75; margin-top:2px; }
+  .tab.active { background: #7c4dff; color:#fff; box-shadow:0 3px 0 #5e35b1; }
+  .tab.done { background:#c8e6c9; color:#2e7d32; box-shadow:0 3px 0 #a5d6a7; }
+  .tab.done.active { background: #7c4dff; color:#fff; box-shadow:0 3px 0 #5e35b1; }
+  .subject-title { font-size: 22px; font-weight:bold; color:#fff; background: #7c4dff; border-radius:18px;
+                   padding:12px 18px; margin: 6px 0 12px; box-shadow:0 4px 0 #5e35b1; text-align:center; }
+  .progress { text-align:center; font-size: 17px; color:#777; margin-bottom:10px; }
+  .q { background:#fff; border-radius:20px; padding:16px; margin-bottom:14px; box-shadow:0 4px 10px rgba(0,0,0,.08); }
+  .q .num { display:inline-block; background:#ffca28; color:#5d4037; font-weight:bold; border-radius:50%;
+            width:36px; height:36px; line-height:36px; text-align:center; font-size:18px; margin-right:8px; }
+  .q .text { font-size: 23px; font-weight:bold; margin:4px 0 12px; }
+  .opt { display:block; width:100%; text-align:left; font-size: 22px; font-family:inherit;
+         background:#f5f5f5; border:3px solid #e0e0e0; border-radius:16px; padding:12px 16px; margin-bottom:9px; cursor:pointer; transition:.12s; }
   .opt:active { transform: scale(.98); }
-  .opt.sel { background: #bbdefb; border-color: #2196f3; }
-  .opt.correct { background: #c8e6c9; border-color: #43a047; }
-  .opt.wrong { background: #ffcdd2; border-color: #e53935; }
-  .explain {
-    display: none; font-size: 19px; background: #fff8e1;
-    border-left: 6px solid #ffb300; border-radius: 10px;
-    padding: 10px 14px; margin-top: 10px; color: #6d4c00;
-  }
-  .explain.show { display: block; }
-  .btnbar { text-align: center; margin: 24px 0; }
-  button.big {
-    font-family: inherit; font-size: 24px; font-weight: bold;
-    color: #fff; border: none; border-radius: 20px;
-    padding: 16px 28px; margin: 8px; cursor: pointer;
-  }
-  #checkBtn { background: #43a047; box-shadow: 0 5px 0 #2e7d32; }
-  #resetBtn { background: #78909c; box-shadow: 0 5px 0 #546e7a; }
-  button.big:active { transform: translateY(3px); box-shadow: none; }
-  #scorebox {
-    display: none; text-align: center; font-size: 28px; font-weight: bold;
-    background: #fff; border-radius: 24px; padding: 24px;
-    margin: 18px 0; box-shadow: 0 6px 14px rgba(0,0,0,.12);
-  }
-  #scorebox.show { display: block; }
-  #scorebox .big-score { font-size: 46px; color: #ff6f00; }
-  #scorebox .praise { font-size: 24px; margin-top: 10px; }
-  footer { text-align: center; color: #999; font-size: 14px; padding: 20px 0; }
+  .opt.sel { background:#bbdefb; border-color:#2196f3; }
+  .opt.correct { background:#c8e6c9; border-color:#43a047; }
+  .opt.wrong { background:#ffcdd2; border-color:#e53935; }
+  .explain { display:none; font-size: 18px; background:#fff8e1; border-left:6px solid #ffb300;
+             border-radius:10px; padding:10px 14px; margin-top:10px; color:#6d4c00; }
+  .explain.show { display:block; }
+  .btnbar { text-align:center; margin:20px 0; }
+  button.big { font-family:inherit; font-size: 21px; font-weight:bold; color:#fff; border:none;
+               border-radius:20px; padding:14px 24px; margin:6px; cursor:pointer; }
+  .checkBtn { background:#43a047; box-shadow:0 5px 0 #2e7d32; }
+  .resetBtn { background:#78909c; box-shadow:0 5px 0 #546e7a; }
+  .nextBtn  { background:#5c6bc0; box-shadow:0 5px 0 #3949ab; }
+  button.big:active { transform: translateY(3px); box-shadow:none; }
+  .scorebox { display:none; text-align:center; font-size: 24px; font-weight:bold; background:#fff;
+              border-radius:24px; padding:20px; margin:16px 0; box-shadow:0 6px 14px rgba(0,0,0,.12); }
+  .scorebox.show { display:block; }
+  .scorebox .big-score { font-size: 42px; color:#ff6f00; }
+  .scorebox .praise { font-size: 21px; margin-top:8px; }
+  .total { background:#fff; border-radius:20px; padding:16px; margin:16px 0; box-shadow:0 4px 10px rgba(0,0,0,.08); }
+  .total h3 { margin:0 0 10px; text-align:center; font-size: 22px; color:#555; }
+  .total .row { display:flex; justify-content:space-between; font-size: 18px; padding:7px 4px; border-bottom:1px dashed #eee; }
+  .total .row:last-child { border-bottom:none; font-weight:bold; color:#ff6f00; }
+  footer { text-align:center; color:#999; font-size:14px; padding:18px 0; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <h1>🌟 ข้อสอบฝึกของหนูทีฟา 🌟</h1>
-    <div class="meta">ชั้น ป.1 &nbsp;•&nbsp; วันที่ 29 ก.ค. 2026 🎉</div>
-    <div class="meta">วิชา: ภาษาไทย 📖 + สังคมศึกษา 🏡</div>
+    <div class="meta">ชั้น ป.1 &nbsp;•&nbsp; วันที่ 4 ต.ค. 2026 🎉</div>
+    <div class="meta">5 วิชา วิชาละ 20 ข้อ &nbsp;•&nbsp; รวม 100 ข้อ 💯</div>
   </header>
 
+  <div class="tabs" id="tabs"></div>
+  <div class="progress" id="progress"></div>
   <div id="quiz"></div>
 
   <div class="btnbar">
-    <button class="big" id="checkBtn" onclick="checkAll()">✅ ตรวจคำตอบ</button>
-    <button class="big" id="resetBtn" onclick="resetAll()">🔄 ทำใหม่</button>
+    <button class="big checkBtn" onclick="checkSubject()">✅ ตรวจวิชานี้</button>
+    <button class="big nextBtn" onclick="nextSubject()">➡️ วิชาถัดไป</button>
+    <button class="big resetBtn" onclick="resetSubject()">🔄 ทำวิชานี้ใหม่</button>
   </div>
 
-  <div id="scorebox"></div>
+  <div class="scorebox" id="scorebox"></div>
+  <div class="total" id="total"></div>
 
   <footer>JND • ฝึกทำทุกวัน เก่งขึ้นทุกวัน 💪</footer>
 </div>
 
 <script>
 const questions = [
-  // ===== ภาษาไทย: สระประสม (เอีย เอือ อัว) (10 ข้อ) =====
-  { subj:1, text:"คำว่า “เสือ” 🐯 ประสมด้วยสระใด?", opts:["สระเอีย","สระเอือ","สระอัว"], ans:1, exp:"เสือ ใช้สระเอือ (เ–ือ)" },
-  { subj:1, text:"คำว่า “บัว” 🪷 ประสมด้วยสระใด?", opts:["สระอัว","สระเอีย","สระเอือ"], ans:0, exp:"บัว ใช้สระอัว (–ัว)" },
-  { subj:1, text:"คำว่า “เรือ” ⛵ ประสมด้วยสระใด?", opts:["สระเอีย","สระเอือ","สระอัว"], ans:1, exp:"เรือ ใช้สระเอือ (เ–ือ)" },
-  { subj:1, text:"คำว่า “วัว” 🐄 ประสมด้วยสระใด?", opts:["สระเอือ","สระอัว","สระเอีย"], ans:1, exp:"วัว ใช้สระอัว (–ัว)" },
-  { subj:1, text:"คำว่า “เสีย” ประสมด้วยสระใด?", opts:["สระเอีย","สระอัว","สระเอือ"], ans:0, exp:"เสีย ใช้สระเอีย (เ–ีย)" },
-  { subj:1, text:"คำว่า “หัว” ประสมด้วยสระใด?", opts:["สระเอีย","สระเอือ","สระอัว"], ans:2, exp:"หัว ใช้สระอัว (–ัว)" },
-  { subj:1, text:"คำว่า “เกลือ” 🧂 ประสมด้วยสระใด?", opts:["สระเอือ","สระเอีย","สระอัว"], ans:0, exp:"เกลือ ใช้สระเอือ (เ–ือ)" },
-  { subj:1, text:"คำว่า “ตัว” ประสมด้วยสระใด?", opts:["สระอัว","สระเอีย","สระเอือ"], ans:0, exp:"ตัว ใช้สระอัว (–ัว)" },
-  { subj:1, text:"คำว่า “เขียน” ✍️ ประสมด้วยสระใด?", opts:["สระเอือ","สระเอีย","สระอัว"], ans:1, exp:"เขียน ใช้สระเอีย (เ–ีย)" },
-  { subj:1, text:"คำว่า “เสือ” กับ “เรือ” ใช้สระเดียวกันคือสระใด?", opts:["สระเอีย","สระอัว","สระเอือ"], ans:2, exp:"ทั้งสองคำใช้สระเอือ (เ–ือ)" },
+  // ===== ภาษาไทย (20 ข้อ) =====
+  // (ก) วรรณยุกต์เบื้องต้น ไม้เอก-ไม้โท เสียงสูงต่ำ 10 ข้อ
+  { subj:1, text:"คำว่า “ป่า” มีรูปวรรณยุกต์อะไร 🌳", opts:["ไม้โท","ไม้ตรี","ไม้เอก"], ans:2, exp:"ป่า ใส่ ่ เรียกว่า ไม้เอก" },
+  { subj:1, text:"คำว่า “น้ำ” มีรูปวรรณยุกต์อะไร 💧", opts:["ไม้เอก","ไม้โท","ไม้จัตวา"], ans:1, exp:"น้ำ ใส่ ้ เรียกว่า ไม้โท" },
+  { subj:1, text:"ข้อใดมีไม้โท", opts:["ไก่","ไม้","ปู"], ans:1, exp:"ไม้ ใส่ ้ เป็นไม้โท" },
+  { subj:1, text:"ข้อใดมีไม้เอก", opts:["แม่","แม้","ตา"], ans:0, exp:"แม่ ใส่ ่ เป็นไม้เอก" },
+  { subj:1, text:"เครื่องหมาย ่ เรียกว่าอะไร", opts:["ไม้โท","ไม้เอก","ไม้ตรี"], ans:1, exp:"ขีดเดียว ่ คือ ไม้เอก" },
+  { subj:1, text:"เครื่องหมาย ้ เรียกว่าอะไร", opts:["ไม้โท","ไม้เอก","ไม้จัตวา"], ans:0, exp:"สองขีด ้ คือ ไม้โท" },
+  { subj:1, text:"คำว่า “พ่อ” ใส่วรรณยุกต์อะไร 👨", opts:["ไม้โท","ไม้ตรี","ไม้เอก"], ans:2, exp:"พ่อ ใส่ ่ เป็นไม้เอก" },
+  { subj:1, text:"ข้อใดไม่มีรูปวรรณยุกต์เลย", opts:["ป้า","ไก่","ตา"], ans:2, exp:"ตา ไม่มีวรรณยุกต์" },
+  { subj:1, text:"คำว่า “แม่” กับ “แม้” ต่างกันที่อะไร", opts:["รูปวรรณยุกต์","จำนวนสระ","ตัวสะกด"], ans:0, exp:"ตัวเหมือนกัน ต่างแค่วรรณยุกต์" },
+  { subj:1, text:"ข้อใดใส่ไม้โท", opts:["พี่","ปู","น้อง"], ans:2, exp:"น้อง ใส่ ้ เป็นไม้โท" },
+  // (ข) มาตราตัวสะกด แม่กง แม่กน แม่กม 10 ข้อ
+  { subj:1, text:"คำว่า “ลิง” อยู่ในมาตราตัวสะกดแม่อะไร 🐒", opts:["แม่กง","แม่กน","แม่กม"], ans:0, exp:"สะกดด้วย ง คือแม่กง" },
+  { subj:1, text:"คำว่า “กิน” อยู่ในมาตราตัวสะกดแม่อะไร 🍚", opts:["แม่กน","แม่กง","แม่กม"], ans:0, exp:"สะกดด้วย น คือแม่กน" },
+  { subj:1, text:"คำว่า “ยิ้ม” อยู่ในมาตราตัวสะกดแม่อะไร 😊", opts:["แม่กง","แม่กน","แม่กม"], ans:2, exp:"สะกดด้วย ม คือแม่กม" },
+  { subj:1, text:"ข้อใดอยู่ในแม่กง", opts:["นม","นอน","นั่ง"], ans:2, exp:"นั่ง สะกดด้วย ง" },
+  { subj:1, text:"ข้อใดอยู่ในแม่กน 🏠", opts:["บ้าน","บาง","ลม"], ans:0, exp:"บ้าน สะกดด้วย น" },
+  { subj:1, text:"ข้อใดอยู่ในแม่กม 🍊", opts:["สาน","ส้ม","สอง"], ans:1, exp:"ส้ม สะกดด้วย ม" },
+  { subj:1, text:"คำว่า “ดิน” สะกดด้วยตัวอะไร", opts:["ง","น","ม"], ans:1, exp:"ดิน สะกดด้วย น" },
+  { subj:1, text:"คำว่า “แกง” สะกดด้วยตัวอะไร 🍲", opts:["น","ง","ม"], ans:1, exp:"แกง สะกดด้วย ง" },
+  { subj:1, text:"คำว่า “ขนม” สะกดด้วยตัวอะไร 🍡", opts:["ง","น","ม"], ans:2, exp:"ขนม สะกดด้วย ม" },
+  { subj:1, text:"ข้อใดไม่อยู่ในแม่กม", opts:["ริม","งาม","กลาง"], ans:2, exp:"กลาง สะกดด้วย ง จึงเป็นแม่กง" },
 
-  // ===== สังคมศึกษา: ชุมชนของเรา (10 ข้อ) =====
-  { subj:2, text:"สถานที่ที่เราไปซื้อของกินของใช้ คือที่ใด?", opts:["โรงเรียน","ร้านค้า / ตลาด","วัด"], ans:1, exp:"เราซื้อของกินของใช้ที่ร้านค้าหรือตลาด 🛒" },
-  { subj:2, text:"เมื่อเจ็บป่วย เราควรไปที่ใด?", opts:["โรงพยาบาล","ตลาด","สวนสาธารณะ"], ans:0, exp:"เจ็บป่วยไปหาหมอที่โรงพยาบาล 🏥" },
-  { subj:2, text:"สถานที่สำหรับทำบุญและประกอบพิธีทางศาสนาพุทธ คือที่ใด?", opts:["ธนาคาร","วัด","ตลาด"], ans:1, exp:"ชาวพุทธทำบุญที่วัด" },
-  { subj:2, text:"ถ้าของหายหรือมีขโมย เราควรแจ้งที่ใด?", opts:["สถานีตำรวจ","ร้านอาหาร","โรงเรียน"], ans:0, exp:"แจ้งเหตุที่สถานีตำรวจ 👮" },
-  { subj:2, text:"บุคคลที่ช่วยดับไฟเวลาไฟไหม้ คือใคร?", opts:["พ่อค้า","ครู","นักดับเพลิง"], ans:2, exp:"นักดับเพลิงช่วยดับไฟ 🚒" },
-  { subj:2, text:"บุคคลที่ช่วยรักษาคนป่วยที่โรงพยาบาล คือใคร?", opts:["หมอและพยาบาล","ตำรวจ","คนขับรถ"], ans:0, exp:"หมอและพยาบาลดูแลรักษาคนป่วย" },
-  { subj:2, text:"เราควรปฏิบัติตัวอย่างไรในชุมชน?", opts:["ทิ้งขยะเรี่ยราด","ช่วยเหลือกันและรักษาความสะอาด","ส่งเสียงดังรบกวน"], ans:1, exp:"อยู่ในชุมชนควรช่วยเหลือกันและรักษาความสะอาด" },
-  { subj:2, text:"สถานที่ที่เด็กๆ ไปเล่นและออกกำลังกายในชุมชน คือที่ใด?", opts:["สวนสาธารณะ","ธนาคาร","สถานีตำรวจ"], ans:0, exp:"สวนสาธารณะเป็นที่เล่นและออกกำลังกาย 🌳" },
-  { subj:2, text:"เมื่อข้ามถนน เราควรทำอย่างไร?", opts:["วิ่งข้ามตรงไหนก็ได้","ข้ามตรงทางม้าลาย มองซ้าย-ขวา","ข้ามตอนรถวิ่งมา"], ans:1, exp:"ข้ามถนนตรงทางม้าลาย มองซ้าย-ขวาให้ปลอดภัย 🚸" },
-  { subj:2, text:"การทิ้งขยะให้ถูกที่ในชุมชน มีประโยชน์อย่างไร?", opts:["ชุมชนสะอาด น่าอยู่","ชุมชนสกปรก","ไม่มีผล"], ans:0, exp:"ทิ้งขยะให้ถูกที่ ชุมชนสะอาดน่าอยู่" }
+  // ===== คณิตศาสตร์ (20 ข้อ) =====
+  // (ก) การลบจำนวนไม่เกิน 20 10 ข้อ
+  { subj:2, text:"15 - 7 = ?", opts:["8","7","9"], ans:0, exp:"15 ลบ 7 ได้ 8" },
+  { subj:2, text:"12 - 5 = ?", opts:["6","7","8"], ans:1, exp:"12 ลบ 5 ได้ 7" },
+  { subj:2, text:"20 - 8 = ?", opts:["10","11","12"], ans:2, exp:"20 ลบ 8 ได้ 12" },
+  { subj:2, text:"18 - 9 = ?", opts:["9","8","10"], ans:0, exp:"18 ลบ 9 ได้ 9" },
+  { subj:2, text:"14 - 3 = ?", opts:["10","11","12"], ans:1, exp:"14 ลบ 3 ได้ 11" },
+  { subj:2, text:"17 - 9 = ?", opts:["6","7","8"], ans:2, exp:"17 ลบ 9 ได้ 8" },
+  { subj:2, text:"11 - 4 = ?", opts:["7","6","8"], ans:0, exp:"11 ลบ 4 ได้ 7" },
+  { subj:2, text:"16 - 10 = ?", opts:["5","6","7"], ans:1, exp:"16 ลบ 10 ได้ 6" },
+  { subj:2, text:"13 - 9 = ?", opts:["3","2","4"], ans:2, exp:"13 ลบ 9 ได้ 4" },
+  { subj:2, text:"19 - 6 = ?", opts:["13","12","14"], ans:0, exp:"19 ลบ 6 ได้ 13" },
+  // (ข) เปรียบเทียบมากกว่า-น้อยกว่า และรูปเรขาคณิต 10 ข้อ
+  { subj:2, text:"ข้อใดถูกต้อง", opts:["8 มากกว่า 5","5 มากกว่า 8","8 เท่ากับ 5"], ans:0, exp:"8 มากกว่า 5" },
+  { subj:2, text:"จำนวนใดน้อยกว่า 12", opts:["15","9","20"], ans:1, exp:"9 น้อยกว่า 12" },
+  { subj:2, text:"จำนวนใดมากที่สุด", opts:["7","13","19"], ans:2, exp:"19 มากที่สุด" },
+  { subj:2, text:"จำนวนใดน้อยที่สุด", opts:["4","11","8"], ans:0, exp:"4 น้อยที่สุด" },
+  { subj:2, text:"เครื่องหมาย > อ่านว่าอะไร", opts:["มากกว่า","น้อยกว่า","เท่ากับ"], ans:0, exp:"เครื่องหมาย > คือ มากกว่า" },
+  { subj:2, text:"รูปใดมี 3 ด้าน 🔺", opts:["วงกลม","สามเหลี่ยม","สี่เหลี่ยม"], ans:1, exp:"สามเหลี่ยมมี 3 ด้าน" },
+  { subj:2, text:"รูปใดมี 4 ด้านเท่ากันทุกด้าน", opts:["วงกลม","สามเหลี่ยม","สี่เหลี่ยมจัตุรัส"], ans:2, exp:"สี่เหลี่ยมจัตุรัสมี 4 ด้านเท่ากัน" },
+  { subj:2, text:"รูปใดไม่มีมุมเลย ⭕", opts:["วงกลม","สามเหลี่ยม","สี่เหลี่ยม"], ans:0, exp:"วงกลมไม่มีมุม" },
+  { subj:2, text:"ล้อรถมีรูปร่างแบบใด 🚗", opts:["สี่เหลี่ยม","วงกลม","สามเหลี่ยม"], ans:1, exp:"ล้อรถเป็นวงกลมจึงหมุนได้" },
+  { subj:2, text:"หลังคาบ้านส่วนมากเป็นรูปอะไร 🏠", opts:["วงกลม","สี่เหลี่ยม","สามเหลี่ยม"], ans:2, exp:"หลังคาบ้านมักเป็นสามเหลี่ยม" },
+
+  // ===== ภาษาอังกฤษ (20 ข้อ) =====
+  // (ก) คำศัพท์ครอบครัว 10 ข้อ
+  { subj:3, text:"คำว่า “พ่อ” ภาษาอังกฤษคือข้อใด 👨", opts:["father","mother","sister"], ans:0, exp:"พ่อ คือ father" },
+  { subj:3, text:"คำว่า “แม่” ภาษาอังกฤษคือข้อใด 👩", opts:["brother","mother","baby"], ans:1, exp:"แม่ คือ mother" },
+  { subj:3, text:"sister แปลว่าอะไร", opts:["พี่สาวหรือน้องสาว","พี่ชาย","คุณปู่"], ans:0, exp:"sister คือ พี่สาวหรือน้องสาว" },
+  { subj:3, text:"brother แปลว่าอะไร", opts:["พี่สาว","คุณยาย","พี่ชายหรือน้องชาย"], ans:2, exp:"brother คือ พี่ชายหรือน้องชาย" },
+  { subj:3, text:"คำว่า “เด็กทารก” ภาษาอังกฤษคือข้อใด 👶", opts:["book","baby","bag"], ans:1, exp:"เด็กทารก คือ baby" },
+  { subj:3, text:"grandfather แปลว่าอะไร", opts:["คุณปู่","คุณย่า","คุณน้า"], ans:0, exp:"grandfather คือ คุณปู่หรือคุณตา" },
+  { subj:3, text:"คำว่า “คุณย่า คุณยาย” ภาษาอังกฤษคือข้อใด 👵", opts:["grandfather","mother","grandmother"], ans:2, exp:"คุณย่าคุณยาย คือ grandmother" },
+  { subj:3, text:"family แปลว่าอะไร 👨‍👩‍👧", opts:["โรงเรียน","เพื่อน","ครอบครัว"], ans:2, exp:"family คือ ครอบครัว" },
+  { subj:3, text:"คำว่า “ลูกชาย” ภาษาอังกฤษคือข้อใด", opts:["son","daughter","sister"], ans:0, exp:"ลูกชาย คือ son" },
+  { subj:3, text:"daughter แปลว่าอะไร", opts:["ลูกชาย","ลูกสาว","คุณพ่อ"], ans:1, exp:"daughter คือ ลูกสาว" },
+  // (ข) สิ่งของในห้องเรียน 10 ข้อ
+  { subj:3, text:"คำว่า “ปากกา” ภาษาอังกฤษคือข้อใด 🖊️", opts:["pencil","pen","paper"], ans:1, exp:"ปากกา คือ pen" },
+  { subj:3, text:"book แปลว่าอะไร 📘", opts:["หนังสือ","กระเป๋า","เก้าอี้"], ans:0, exp:"book คือ หนังสือ" },
+  { subj:3, text:"คำว่า “กระเป๋านักเรียน” ภาษาอังกฤษคือข้อใด 🎒", opts:["box","bus","bag"], ans:2, exp:"กระเป๋า คือ bag" },
+  { subj:3, text:"chair แปลว่าอะไร 🪑", opts:["โต๊ะ","เก้าอี้","ประตู"], ans:1, exp:"chair คือ เก้าอี้" },
+  { subj:3, text:"คำว่า “โต๊ะ” ภาษาอังกฤษคือข้อใด", opts:["table","chair","ruler"], ans:0, exp:"โต๊ะ คือ table" },
+  { subj:3, text:"ruler แปลว่าอะไร 📏", opts:["ไม้บรรทัด","ยางลบ","ดินสอ"], ans:0, exp:"ruler คือ ไม้บรรทัด" },
+  { subj:3, text:"คำว่า “ดินสอ” ภาษาอังกฤษคือข้อใด ✏️", opts:["pen","pencil","paper"], ans:1, exp:"ดินสอ คือ pencil" },
+  { subj:3, text:"eraser แปลว่าอะไร", opts:["สมุด","ยางลบ","กรรไกร"], ans:1, exp:"eraser คือ ยางลบ" },
+  { subj:3, text:"คำว่า “กระดาษ” ภาษาอังกฤษคือข้อใด 📄", opts:["pen","pencil","paper"], ans:2, exp:"กระดาษ คือ paper" },
+  { subj:3, text:"teacher แปลว่าอะไร 👩‍🏫", opts:["ครู","นักเรียน","โรงเรียน"], ans:0, exp:"teacher คือ ครู" },
+
+  // ===== วิทยาศาสตร์ (20 ข้อ) =====
+  // (ก) สัตว์และที่อยู่อาศัย อาหารของสัตว์ 10 ข้อ
+  { subj:4, text:"ปลาอาศัยอยู่ที่ไหน 🐟", opts:["ในน้ำ","บนต้นไม้","ในดิน"], ans:0, exp:"ปลาอยู่ในน้ำ" },
+  { subj:4, text:"นกอาศัยอยู่ที่ไหน 🐦", opts:["ในน้ำ","ในรังบนต้นไม้","ในกระดอง"], ans:1, exp:"นกทำรังอยู่บนต้นไม้" },
+  { subj:4, text:"กระต่ายชอบกินอะไร 🐰", opts:["ปลา","เนื้อ","แครอทและผัก"], ans:2, exp:"กระต่ายกินผักและแครอท" },
+  { subj:4, text:"แมวชอบกินอะไร 🐱", opts:["ปลา","หญ้า","ใบไม้"], ans:0, exp:"แมวชอบกินปลาและเนื้อ" },
+  { subj:4, text:"วัวกินอะไรเป็นอาหาร 🐮", opts:["เนื้อ","หญ้า","ปลา"], ans:1, exp:"วัวกินหญ้า" },
+  { subj:4, text:"สัตว์ใดอยู่ในน้ำได้", opts:["ไก่","ช้าง","ปลาทอง"], ans:2, exp:"ปลาทองอยู่ในน้ำ" },
+  { subj:4, text:"ผึ้งกินอะไร 🐝", opts:["น้ำหวานจากดอกไม้","เนื้อ","หิน"], ans:0, exp:"ผึ้งดูดน้ำหวานจากดอกไม้" },
+  { subj:4, text:"หอยทากมีอะไรติดตัวไว้เป็นบ้าน 🐌", opts:["รัง","กระดอง","ถ้ำ"], ans:1, exp:"หอยทากมีกระดองเป็นบ้าน" },
+  { subj:4, text:"สัตว์ใดบินได้", opts:["ปู","ปลา","นก"], ans:2, exp:"นกมีปีกจึงบินได้" },
+  { subj:4, text:"เสือกินอะไรเป็นอาหาร 🐯", opts:["หญ้า","เนื้อสัตว์","ใบไม้"], ans:1, exp:"เสือกินเนื้อสัตว์" },
+  // (ข) อากาศและฤดูกาลรอบตัว 10 ข้อ
+  { subj:4, text:"เมื่อฝนตกเราควรใช้อะไร ☔", opts:["ร่ม","พัด","ผ้าห่ม"], ans:0, exp:"ฝนตกต้องกางร่ม" },
+  { subj:4, text:"ฤดูใดอากาศหนาว ❄️", opts:["ฤดูร้อน","ฤดูหนาว","ฤดูฝน"], ans:1, exp:"ฤดูหนาวอากาศเย็น" },
+  { subj:4, text:"เมฆสีดำทึบบอกว่าอะไรจะเกิดขึ้น ☁️", opts:["แดดออก","ลมหยุด","ฝนจะตก"], ans:2, exp:"เมฆดำทึบแปลว่าฝนจะตก" },
+  { subj:4, text:"ตอนกลางวันเราเห็นอะไรบนท้องฟ้า ☀️", opts:["ดวงอาทิตย์","ดวงจันทร์","ดาวเต็มฟ้า"], ans:0, exp:"กลางวันมีดวงอาทิตย์" },
+  { subj:4, text:"ตอนกลางคืนเราเห็นอะไรบนท้องฟ้า 🌙", opts:["ดวงอาทิตย์","ดวงจันทร์","รุ้งกินน้ำ"], ans:1, exp:"กลางคืนเห็นดวงจันทร์และดาว" },
+  { subj:4, text:"ประเทศไทยมีกี่ฤดู", opts:["2 ฤดู","3 ฤดู","4 ฤดู"], ans:1, exp:"ไทยมี 3 ฤดู ร้อน ฝน หนาว" },
+  { subj:4, text:"ฤดูร้อนเราควรทำอะไร 🥤", opts:["ดื่มน้ำมากๆ","ใส่เสื้อหนาหนาๆ","ไม่ต้องอาบน้ำ"], ans:0, exp:"อากาศร้อนต้องดื่มน้ำมากๆ" },
+  { subj:4, text:"ลมทำให้อะไรเกิดขึ้น 🍃", opts:["ใบไม้ปลิว","ฝนหยุด","ดินแข็ง"], ans:0, exp:"ลมพัดทำให้ใบไม้ปลิว" },
+  { subj:4, text:"ฤดูฝนมักมีอะไรมาก 🌧️", opts:["แดดจัดทุกวัน","หิมะ","ฝนและเมฆมาก"], ans:2, exp:"ฤดูฝนมีฝนและเมฆมาก" },
+  { subj:4, text:"หลังฝนตกแล้วมีแดด บางครั้งเราเห็นอะไร 🌈", opts:["หิมะ","รุ้งกินน้ำ","ดาวตก"], ans:1, exp:"ฝนตกแล้วแดดออกเกิดรุ้งกินน้ำ" },
+
+  // ===== สังคมศึกษา (20 ข้อ) =====
+  // (ก) วันสำคัญและประเพณีไทย 10 ข้อ
+  { subj:5, text:"วันสงกรานต์อยู่ในเดือนใด 💦", opts:["เมษายน","มกราคม","ธันวาคม"], ans:0, exp:"สงกรานต์อยู่เดือนเมษายน" },
+  { subj:5, text:"ประเพณีลอยกระทงเราทำอะไร 🪷", opts:["เล่นสาดน้ำ","ลอยกระทงในแม่น้ำ","ตักบาตรเทโว"], ans:1, exp:"ลอยกระทงคือลอยกระทงลงน้ำ" },
+  { subj:5, text:"วันสงกรานต์เราเล่นอะไรกัน", opts:["ลอยกระทง","สาดน้ำ","จุดประทัด"], ans:1, exp:"สงกรานต์เล่นสาดน้ำ" },
+  { subj:5, text:"วันแม่ของไทยตรงกับวันที่เท่าไร 💐", opts:["5 ธันวาคม","12 สิงหาคม","14 เมษายน"], ans:1, exp:"วันแม่คือ 12 สิงหาคม" },
+  { subj:5, text:"ดอกไม้ประจำวันแม่คือดอกอะไร", opts:["ดอกมะลิ","ดอกกุหลาบ","ดอกบัว"], ans:0, exp:"วันแม่ใช้ดอกมะลิ" },
+  { subj:5, text:"วันพ่อของไทยตรงกับวันที่เท่าไร", opts:["12 สิงหาคม","14 กุมภาพันธ์","5 ธันวาคม"], ans:2, exp:"วันพ่อคือ 5 ธันวาคม" },
+  { subj:5, text:"วันเด็กของไทยอยู่ในเดือนใด 🎈", opts:["เมษายน","สิงหาคม","มกราคม"], ans:2, exp:"วันเด็กอยู่เดือนมกราคม" },
+  { subj:5, text:"วันขึ้นปีใหม่ตรงกับวันที่เท่าไร 🎉", opts:["31 ธันวาคม","1 มกราคม","13 เมษายน"], ans:1, exp:"ปีใหม่คือ 1 มกราคม" },
+  { subj:5, text:"วันสงกรานต์เราควรทำอะไรกับผู้ใหญ่ 🙏", opts:["รดน้ำขอพร","ไม่สนใจท่าน","แกล้งท่าน"], ans:0, exp:"สงกรานต์รดน้ำขอพรผู้ใหญ่" },
+  { subj:5, text:"ลอยกระทงจัดในช่วงเดือนใด", opts:["เมษายน","มกราคม","พฤศจิกายน"], ans:2, exp:"ลอยกระทงอยู่เดือนพฤศจิกายน" },
+  // (ข) เงินและการใช้จ่าย การออมเบื้องต้น 10 ข้อ
+  { subj:5, text:"เหรียญ 10 บาท มีค่ามากกว่าข้อใด 🪙", opts:["เหรียญ 5 บาท","ธนบัตร 20 บาท","ธนบัตร 100 บาท"], ans:0, exp:"10 บาท มากกว่า 5 บาท" },
+  { subj:5, text:"ข้อใดเป็นธนบัตร 💵", opts:["เหรียญ 1 บาท","แบงก์ 20 บาท","เหรียญ 10 บาท"], ans:1, exp:"แบงก์ 20 บาท เป็นธนบัตร" },
+  { subj:5, text:"ซื้อขนม 15 บาท จ่าย 20 บาท ได้เงินทอนเท่าไร 🍪", opts:["10 บาท","15 บาท","5 บาท"], ans:2, exp:"20 ลบ 15 ได้ทอน 5 บาท" },
+  { subj:5, text:"เราเก็บเงินออมไว้ในอะไรดี 🐷", opts:["ถังขยะ","กระปุกออมสิน","ตู้เย็น"], ans:1, exp:"เก็บเงินในกระปุกออมสิน" },
+  { subj:5, text:"การออมเงินคืออะไร", opts:["เก็บเงินไว้ใช้วันหลัง","ใช้เงินให้หมดทุกวัน","ทิ้งเงินเล่น"], ans:0, exp:"ออมเงินคือเก็บไว้ใช้วันหลัง" },
+  { subj:5, text:"ถ้าอยากซื้อของเล่นราคาแพง ควรทำอย่างไร 🧸", opts:["ขอเงินทุกวัน","ไม่ต้องทำอะไร","เก็บเงินทีละน้อย"], ans:2, exp:"เก็บออมทีละน้อยจนพอซื้อ" },
+  { subj:5, text:"เงินของประเทศไทยเรียกหน่วยว่าอะไร", opts:["ดอลลาร์","เยน","บาท"], ans:2, exp:"เงินไทยมีหน่วยเป็นบาท" },
+  { subj:5, text:"เหรียญใดมีค่าน้อยที่สุด", opts:["1 บาท","5 บาท","10 บาท"], ans:0, exp:"1 บาท น้อยที่สุด" },
+  { subj:5, text:"ซื้อนม 12 บาท จ่าย 20 บาท ได้ทอนกี่บาท 🥛", opts:["7 บาท","8 บาท","9 บาท"], ans:1, exp:"20 ลบ 12 ได้ทอน 8 บาท" },
+  { subj:5, text:"ข้อใดเป็นการใช้เงินที่ดี", opts:["ซื้อทุกอย่างที่เห็น","ซื้อของที่จำเป็นก่อน","ให้เพื่อนใช้หมด"], ans:1, exp:"ควรซื้อของจำเป็นก่อน" }
 ];
+const subjNames = {
+  1:"📖 วิชาภาษาไทย",
+  2:"🔢 วิชาคณิตศาสตร์",
+  3:"🔤 วิชาภาษาอังกฤษ",
+  4:"🔬 วิชาวิทยาศาสตร์",
+  5:"🏡 วิชาสังคมศึกษา"
+};
+const subjShort = { 1:"📖 ภาษาไทย", 2:"🔢 คณิตศาสตร์", 3:"🔤 ภาษาอังกฤษ", 4:"🔬 วิทยาศาสตร์", 5:"🏡 สังคมศึกษา" };
 
-const subjNames = { 1:"📖 วิชาภาษาไทย — สระประสม (เอีย เอือ อัว)", 2:"🏡 วิชาสังคมศึกษา — ชุมชนของเรา" };
 const selected = {};
-let checked = false;
+const checkedSubj = {};
+const scoreSubj = {};
+let cur = 1;
+const SUBJS = [1,2,3,4,5];
 
-function render() {
+function qsOf(s){ return questions.map((q,i)=>({q,i})).filter(o=>o.q.subj===s); }
+
+function renderTabs(){
+  const t = document.getElementById('tabs');
+  t.innerHTML = '';
+  SUBJS.forEach(s=>{
+    const b = document.createElement('button');
+    b.className = 'tab' + (s===cur?' active':'') + (checkedSubj[s]?' done':'');
+    const short = subjShort[s];
+    b.innerHTML = short + '<span class="tn">' + (checkedSubj[s] ? (scoreSubj[s]+'/'+qsOf(s).length) : '20 ข้อ') + '</span>';
+    b.onclick = ()=>{ cur = s; render(); window.scrollTo({top:0,behavior:'smooth'}); };
+    t.appendChild(b);
+  });
+}
+
+function render(){
+  renderTabs();
   const box = document.getElementById('quiz');
   box.innerHTML = '';
-  let lastSubj = null;
-  questions.forEach((q, i) => {
-    if (q.subj !== lastSubj) {
-      const t = document.createElement('div');
-      t.className = 'subject-title' + (q.subj===2 ? ' s2' : '');
-      t.textContent = subjNames[q.subj];
-      box.appendChild(t);
-      lastSubj = q.subj;
-    }
+  const title = document.createElement('div');
+  title.className = 'subject-title';
+  title.textContent = subjNames[cur];
+  box.appendChild(title);
+
+  qsOf(cur).forEach((o, n)=>{
+    const q = o.q, i = o.i;
     const card = document.createElement('div');
     card.className = 'q';
-    const numInSubj = questions.slice(0,i+1).filter(x=>x.subj===q.subj).length;
-    let html = '<div class="text"><span class="num">'+numInSubj+'</span>'+q.text+'</div>';
-    q.opts.forEach((o, oi) => {
-      html += '<button class="opt" data-q="'+i+'" data-o="'+oi+'" onclick="pick('+i+','+oi+')">'+o+'</button>';
+    let html = '<div class="text"><span class="num">'+(n+1)+'</span>'+q.text+'</div>';
+    q.opts.forEach((op, oi)=>{
+      let cls = 'opt';
+      if (checkedSubj[cur]) {
+        if (oi === q.ans) cls += ' correct';
+        else if (oi === selected[i]) cls += ' wrong';
+      } else if (selected[i] === oi) cls += ' sel';
+      html += '<button class="'+cls+'" data-q="'+i+'" data-o="'+oi+'" onclick="pick('+i+','+oi+')">'+op+'</button>';
     });
-    html += '<div class="explain" id="exp-'+i+'">💡 เฉลย: '+q.opts[q.ans]+' — '+q.exp+'</div>';
+    html += '<div class="explain'+(checkedSubj[cur]?' show':'')+'" id="exp-'+i+'">💡 เฉลย: '+q.opts[q.ans]+' — '+q.exp+'</div>';
     card.innerHTML = html;
     box.appendChild(card);
   });
+
+  const sb = document.getElementById('scorebox');
+  if (checkedSubj[cur]) showScore(scoreSubj[cur], qsOf(cur).length); else sb.classList.remove('show');
+  updateProgress();
+  renderTotal();
 }
 
-function pick(qi, oi) {
-  if (checked) return;
+function updateProgress(){
+  const list = qsOf(cur);
+  const done = list.filter(o=>selected[o.i]!==undefined).length;
+  document.getElementById('progress').textContent = 'ทำไปแล้ว ' + done + ' / ' + list.length + ' ข้อ';
+}
+
+function pick(qi, oi){
+  if (checkedSubj[questions[qi].subj]) return;
   selected[qi] = oi;
-  document.querySelectorAll('.opt[data-q="'+qi+'"]').forEach(b => b.classList.remove('sel'));
+  document.querySelectorAll('.opt[data-q="'+qi+'"]').forEach(b=>b.classList.remove('sel'));
   document.querySelector('.opt[data-q="'+qi+'"][data-o="'+oi+'"]').classList.add('sel');
+  updateProgress();
 }
 
-function checkAll() {
-  checked = true;
+function checkSubject(){
+  const list = qsOf(cur);
   let score = 0;
-  questions.forEach((q, i) => {
-    const sel = selected[i];
-    document.querySelectorAll('.opt[data-q="'+i+'"]').forEach(b => {
-      const oi = +b.dataset.o;
-      b.classList.remove('sel');
-      if (oi === q.ans) b.classList.add('correct');
-      if (oi === sel && sel !== q.ans) b.classList.add('wrong');
-    });
-    document.getElementById('exp-'+i).classList.add('show');
-    if (sel === q.ans) score++;
-  });
-  showScore(score);
+  list.forEach(o=>{ if (selected[o.i] === o.q.ans) score++; });
+  checkedSubj[cur] = true;
+  scoreSubj[cur] = score;
+  render();
+  document.getElementById('scorebox').scrollIntoView({behavior:'smooth'});
 }
 
-function showScore(score) {
-  const total = questions.length;
+function resetSubject(){
+  qsOf(cur).forEach(o=>{ delete selected[o.i]; });
+  delete checkedSubj[cur];
+  delete scoreSubj[cur];
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nextSubject(){
+  cur = cur % 5 + 1;
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showScore(score, total){
   const pct = score/total;
   let praise, emoji;
   if (pct === 1) { praise = "สุดยอดมากลูก! เต็มทุกข้อเลย!"; emoji="🏆🎉"; }
@@ -183,17 +308,21 @@ function showScore(score) {
   else if (pct >= 0.6) { praise = "ดีมากลูก! เก่งขึ้นเยอะเลย!"; emoji="😊👍"; }
   else { praise = "เก่งมากที่ตั้งใจทำ! ลองใหม่ได้อีกนะ!"; emoji="🤗💪"; }
   const sb = document.getElementById('scorebox');
-  sb.innerHTML = '<div>ได้คะแนน</div><div class="big-score">'+score+' / '+total+' '+emoji+'</div><div class="praise">'+praise+'</div>';
+  sb.innerHTML = '<div>'+subjShort[cur]+'</div><div class="big-score">'+score+' / '+total+' '+emoji+'</div><div class="praise">'+praise+'</div>';
   sb.classList.add('show');
-  sb.scrollIntoView({behavior:'smooth'});
 }
 
-function resetAll() {
-  checked = false;
-  for (const k in selected) delete selected[k];
-  document.getElementById('scorebox').classList.remove('show');
-  render();
-  window.scrollTo({top:0, behavior:'smooth'});
+function renderTotal(){
+  const el = document.getElementById('total');
+  const doneSubjs = SUBJS.filter(s=>checkedSubj[s]);
+  if (!doneSubjs.length) { el.innerHTML = '<h3>📋 ตรวจวิชาไหนแล้ว คะแนนจะมาโชว์ตรงนี้</h3>'; return; }
+  let sum = 0, tot = 0, rows = '';
+  SUBJS.forEach(s=>{
+    const n = qsOf(s).length;
+    if (checkedSubj[s]) { sum += scoreSubj[s]; tot += n; rows += '<div class="row"><span>'+subjShort[s]+'</span><span>'+scoreSubj[s]+' / '+n+'</span></div>'; }
+  });
+  rows += '<div class="row"><span>รวมทั้งหมด</span><span>'+sum+' / '+tot+'</span></div>';
+  el.innerHTML = '<h3>🏅 สรุปคะแนน</h3>' + rows;
 }
 
 render();
